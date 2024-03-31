@@ -1,0 +1,11 @@
+---
+# handlers file for linux-zabbix-agent
+- name: restart zabbix-agent2
+  ansible.builtin.service:
+    name: zabbix-agent2
+    state: restarted
+
+- name: restart firewalld
+  ansible.builtin.service:
+    name: firewalld
+    state: restarted

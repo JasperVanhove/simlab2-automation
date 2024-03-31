@@ -1,0 +1,3 @@
+---
+# vars file for windows-zabbix-agent
+zabbix_server: aed.ad.eendjesshop.be

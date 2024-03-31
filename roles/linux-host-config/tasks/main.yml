@@ -1,0 +1,29 @@
+---
+# tasks file for linux-host-config
+- name: Set hostname
+  ansible.builtin.hostname:
+    name: "{{ ansible_hostname }}"
+  tags: hostname
+
+- name: Set timezone
+  ansible.builtin.timezone:
+    name: "{{ timezone }}"
+  tags: timezone
+
+- name: Set MOTD
+  ansible.builtin.copy:
+    content: |
+      Welcome to {{ ansible_hostname }}! This server is property of Eendjesshop BV!
+      The time is {{ ansible_date_time.date }} {{ ansible_date_time.time }}.
+    dest: /etc/motd
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Show MOTD as output
+  ansible.builtin.shell: cat /etc/motd
+  register: motd_output
+
+- name: Debug MOTD
+  ansible.builtin.debug:
+    var: motd_output.stdout

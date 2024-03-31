@@ -1,0 +1,16 @@
+---
+- name: Install Zabbix Agent on Linux Servers
+  hosts: linux-servers
+  become: yes
+  roles:
+    - linux-host-config
+    - linux-zabbix-agent
+  debugger: on_failed
+
+- name: Install Zabbix Agent on Windows Servers
+  hosts: windows-servers
+  become: yes
+  roles:
+      - windows-host-config
+      - windows-zabbix-agent
+  debugger: on_failed

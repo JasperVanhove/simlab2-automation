@@ -1,0 +1,3 @@
+---
+# vars file for linux-zabbix-agent
+zabbix_server: aed.ad.eendjesshop.be
