@@ -1,0 +1,11 @@
+---
+- name: Test connection
+  hosts: all
+  tasks:
+    - name: Ping hosts where os is windows
+      ansible.windows.win_ping:
+      when: ansible_os_family == 'Windows'
+
+    - name: Ping hosts where os is linux
+      ansible.builtin.ping:
+      when: ansible_os_family == 'Linux'
