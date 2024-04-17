@@ -49,3 +49,10 @@ powershell.exe -ExecutionPolicy ByPass -File $file
 
 
 https://stackoverflow.com/questions/41922521/using-ansible-on-windows-with-domain-user
+
+FIX
+https://stackoverflow.com/questions/38105486/winrm-the-specified-credentials-were-rejected-by-the-server
+
+kdc5.conf is correct
+
+vars zijn correct.
