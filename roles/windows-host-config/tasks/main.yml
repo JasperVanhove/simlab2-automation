@@ -21,20 +21,20 @@
     $script = Get-Content "C:\\Windows\\Temp\\monitoring_agent_pre_req.ps1"
     Invoke-Expression $script
 
-- name: Install monitoring agent
-  ansible.windows.win_shell: |
-      $ErrorActionPreference = "Stop"
-      Invoke-WebRequest -Uri "https://cdn.zabbix.com/zabbix/binaries/stable/6.4/6.4.12/zabbix_agent-6.4.12-windows-amd64-openssl.msi" -OutFile "zabbix_agent.msi"
-  tags: monitoring_agent
-
-- name: Create Installation folder
-  ansible.windows.win_shell: |
-      $ErrorActionPreference = "Stop"
-      New-Item -Path "C:\\Program Files\\Zabbix Agent" -ItemType Directory
-  tags: monitoring_agent
-
-- name: Install monitoring agent
-  ansible.windows.win_shell: |
-      $ErrorActionPreference = "Stop"
-      msiexec /l*v log.txt /i zabbix_agent.msi /qn LOGTYPE=file LOGFILE="C:\Program Files\Zabbix Agent\zabbix_agentd.log" SERVER="{{ zabbix_server }}" LISTENPORT="{{ zabbix_listen_port }}" SERVERACTIVE=::1 HOSTNAME="{{ ansible_host }}" ENABLEPATH=1 INSTALLFOLDER="C:\Program Files\Zabbix Agent" SKIP=fw ALLOWDENYKEY="DenyKey=vfs.file.contents[/etc/passwd]"
-  tags: monitoring_agent
+#- name: Install monitoring agent
+#  ansible.windows.win_shell: |
+#      $ErrorActionPreference = "Stop"
+#      Invoke-WebRequest -Uri "https://cdn.zabbix.com/zabbix/binaries/stable/6.4/6.4.12/zabbix_agent-6.4.12-windows-amd64-openssl.msi" -OutFile "zabbix_agent.msi"
+#  tags: monitoring_agent
+#
+#- name: Create Installation folder
+#  ansible.windows.win_shell: |
+#      $ErrorActionPreference = "Stop"
+#      New-Item -Path "C:\\Program Files\\Zabbix Agent" -ItemType Directory
+#  tags: monitoring_agent
+#
+#- name: Install monitoring agent
+#  ansible.windows.win_shell: |
+#      $ErrorActionPreference = "Stop"
+#      msiexec /l*v log.txt /i zabbix_agent.msi /qn LOGTYPE=file LOGFILE="C:\Program Files\Zabbix Agent\zabbix_agentd.log" SERVER="{{ zabbix_server }}" LISTENPORT="{{ zabbix_listen_port }}" SERVERACTIVE=::1 HOSTNAME="{{ ansible_host }}" ENABLEPATH=1 INSTALLFOLDER="C:\Program Files\Zabbix Agent" SKIP=fw ALLOWDENYKEY="DenyKey=vfs.file.contents[/etc/passwd]"
+#  tags: monitoring_agent

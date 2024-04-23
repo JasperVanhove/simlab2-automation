@@ -1,5 +1,4 @@
 ---
-# tasks file for linux-zabbix-agent
 - name: Check connectivity to Zabbix Server
   ansible.builtin.shell:
     cmd: "ping -c 1 {{ zabbix_server }}"
@@ -10,30 +9,12 @@
     msg: "Zabbix Server is not reachable from this host!"
     when: ping_result.rc != 0
 
+- name: Get Linux Distribution Information
+  ansible.builtin.setup:
+    filter:
+      - 'ansible_distribution'
+    register: distro_info
+
 - name: Install Zabbix Agent
-  ansible.builtin.package:
-    name: zabbix-agent2
-    state: present
-
-- name: Start & Enable Zabbix Agent
-  ansible.builtin.service:
-    name: zabbix-agent2
-    state: started
-    enabled: yes
-
-- name: Copy Zabbix Agent configuration
-  ansible.builtin.template:
-    src: templates/zabbix_agent2.conf.j2
-    dest: /etc/zabbix/zabbix_agent2.conf
-    owner: zabbix-agent
-    group: zabbix-agent
-    mode: 0644
-  notify: restart zabbix-agent2
-
-- name: Enable Zabbix Agent2 in firewall
-  ansible.builtin.firewalld:
-    service: zabbix-agent2
-    permanent: yes
-    state: enabled
-    immediate: yes
-  notify: restart firewalld
+  ansible.builtin.include_role:
+    name: zabbix-agent2-{{ distro_info.ansible_facts.ansible_distribution | lower }

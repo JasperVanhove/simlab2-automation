@@ -1,5 +1,3 @@
 ---
 # vars file for windows-host-config
 timezone: Romance Standard Time
-zabbix_server: canard.ad.eendjesshop.be
-zabbix_listen_port: 10050
