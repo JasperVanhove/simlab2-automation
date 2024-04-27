@@ -1,6 +1,6 @@
 ---
 - name: Test connection
-  hosts: all
+  hosts: zabbix_agents
   tasks:
     - name: Ping hosts where os is windows
       ansible.windows.win_ping:
