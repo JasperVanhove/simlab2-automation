@@ -9,7 +9,7 @@
 - name: Stop running of remaining tasks if Zabbix Server is not reachable
   ansible.builtin.fail:
     msg: "Zabbix Server is not reachable from this host!"
-    when: ping_result.rc != 0
+  when: ping_result.rc != 0
 
 - name: Install Zabbix Agent2
   chocolatey.chocolatey.win_chocolatey:
