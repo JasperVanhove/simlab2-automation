@@ -1,9 +1,10 @@
 ---
 # tasks file for windows-zabbix-agent
 - name: Check connectivity to Zabbix Server
-  ansible.builtin.shell:
-    cmd: "ping -c 1 {{ zabbix_server }}"
-    register: ping_result
+  ansible.windows.win_shell: ping -c 1 {{ zabbix_server }}
+  args:
+    executable: cmd
+  register: ping_result
 
 - name: Stop running of remaining tasks if Zabbix Server is not reachable
   ansible.builtin.fail:

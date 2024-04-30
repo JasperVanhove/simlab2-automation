@@ -1,7 +1,7 @@
 ---
 # tasks file for windows-host-config
 - name: Set hostname on Windows hosts
-  community.windows.win_hostname:
+  ansible.windows.win_hostname:
     name: "{{ ansible_hostname }}"
   tags: hostname
 
