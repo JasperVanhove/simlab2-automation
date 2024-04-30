@@ -4,9 +4,9 @@
   roles:
     - role: test
     - role: linux-host-config
-      when: ansible_facts['ansible_system'] == 'Linux'
+      when: ansible_facts['system'] == 'Linux'
     - role: linux-zabbix-agent
-      when: ansible_facts['ansible_system'] == 'Linux'
+      when: ansible_facts['system'] == 'Linux'
     - role: windows-host-config
       when: ansible_facts['os_family'] == 'Windows'
     - role: windows-zabbix-agent
