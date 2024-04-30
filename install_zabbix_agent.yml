@@ -11,4 +11,3 @@
       when: ansible_facts['os_family'] == 'Windows'
     - role: windows-zabbix-agent
       when: ansible_facts['os_family'] == 'Windows'
-  debugger: on_failed
