@@ -9,6 +9,6 @@ galaxy_info:
 
   galaxy_tags: [ ]
 
-dependencies:
-  - collection: community.windows
-    version: 2.1.0
+dependencies: [ ]
+#  - collection: community.windows
+#    version: 2.1.0

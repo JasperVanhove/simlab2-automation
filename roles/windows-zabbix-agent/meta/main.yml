@@ -9,10 +9,9 @@ galaxy_info:
 
   galaxy_tags: [ ]
 
-dependencies:
-  dependencies:
-    - collection: community.windows
-      version: 2.1.0
-    - collection: ansible.windows
-      version: 2.2.0
-    - collection: chocolatey.chocolatey
+dependencies: []
+#  - collection: community.windows
+#    version: 2.1.0
+#  - collection: ansible.windows
+#    version: 2.2.0
+#  - collection: chocolatey.chocolatey
