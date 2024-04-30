@@ -2,18 +2,18 @@
 - name: Check connectivity to Zabbix Server
   ansible.builtin.shell:
     cmd: "ping -c 1 {{ zabbix_server }}"
-    register: ping_result
+  register: ping_result
 
 - name: Stop running of remaining tasks if Zabbix Server is not reachable
   ansible.builtin.fail:
     msg: "Zabbix Server is not reachable from this host!"
-    when: ping_result.rc != 0
+  when: ping_result.rc != 0
 
 - name: Get Linux Distribution Information
   ansible.builtin.setup:
     filter:
       - 'ansible_distribution'
-    register: distro_info
+  register: distro_info
 
 - name: Install Zabbix Agent
   ansible.builtin.include_role:
