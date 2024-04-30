@@ -1,18 +1,13 @@
 ---
 - name: Install Zabbix Agent on Linux & Windows Servers
   hosts: test
-  become: yes
   roles:
-    - role: test
+    - role: linux-host-config
       when: ansible_facts['os_family'] == 'Linux'
-    - role: test
+    - role: linux-zabbix-agent
+      when: ansible_facts['os_family'] == 'Linux'
+    - role: windows-host-config
       when: ansible_facts['os_family'] == 'Windows'
-  #    - role: linux-host-config
-  #      when: ansible_facts['os_family'] == 'Linux'
-  #    - role: linux-zabbix-agent
-  #      when: ansible_facts['os_family'] == 'Linux'
-  #    - role: windows-host-config
-  #      when: ansible_facts['os_family'] == 'Windows'
-  #    - role: windows-zabbix-agent
-  #      when: ansible_facts['os_family'] == 'Windows'
-#  debugger: on_failed
+    - role: windows-zabbix-agent
+      when: ansible_facts['os_family'] == 'Windows'
+  debugger: on_failed
