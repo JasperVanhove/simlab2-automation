@@ -3,8 +3,12 @@
   hosts: test
   become: yes
   roles:
-    - { role: linux-host-config, when: ansible_os_family == 'Linux' }
-    - { role: linux-zabbix-agent, when: ansible_os_family == 'Linux' }
-    - { role: windows-host-config, when: ansible_os_family == 'Windows' }
-    - { role: windows-zabbix-agent, when: ansible_os_family == 'Windows' }
+    - role: linux-host-config
+      when: ansible_os_family == 'Linux'
+    - role: linux-zabbix-agent
+      when: ansible_os_family == 'Linux'
+    - role: windows-host-config
+      when: ansible_os_family == 'Windows'
+    - role: windows-zabbix-agent
+      when: ansible_os_family == 'Windows'
   debugger: on_failed
