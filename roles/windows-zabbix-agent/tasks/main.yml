@@ -18,7 +18,7 @@
   tags: zabbix-agent2
 
 - name: Configure Zabbix Agent2
-  community.windows.win_template:
+  ansible.windows.win_template:
     src: zabbix_agent2.conf.j2
     dest: C:\Program Files\Zabbix Agent2\zabbix_agent2.conf
   tags: zabbix-agent2
