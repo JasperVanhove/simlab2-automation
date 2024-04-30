@@ -4,11 +4,13 @@
   ansible.builtin.hostname:
     name: "{{ ansible_hostname }}"
   tags: hostname
+  when: ansible_os_family == 'Linux'
 
 - name: Set timezone
   ansible.builtin.timezone:
     name: "{{ timezone }}"
   tags: timezone
+  when: ansible_os_family == 'Linux'
 
 - name: Set MOTD
   ansible.builtin.copy:
@@ -19,11 +21,14 @@
     owner: root
     group: root
     mode: 0644
+  when: ansible_os_family == 'Linux'
 
 - name: Show MOTD as output
   ansible.builtin.shell: cat /etc/motd
   register: motd_output
+  when: ansible_os_family == 'Linux'
 
 - name: Debug MOTD
   ansible.builtin.debug:
     var: motd_output.stdout
+  when: ansible_os_family == 'Linux'
