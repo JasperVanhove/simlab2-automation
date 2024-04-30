@@ -3,9 +3,9 @@
   hosts: test
   become: yes
   roles:
-    - role: test
+    - role: tests
       when: ansible_facts['os_family'] == 'Linux'
-    - role: test
+    - role: tests
       when: ansible_facts['os_family'] == 'Windows'
   #    - role: linux-host-config
   #      when: ansible_facts['os_family'] == 'Linux'
