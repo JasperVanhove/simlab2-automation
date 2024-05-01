@@ -25,7 +25,7 @@
     group: zabbix
     mode: 0644
   become: yes
-
+  notify: Restart Zabbix Agent2
 
 - name: Start & Enable Zabbix Agent2
   ansible.builtin.systemd:
