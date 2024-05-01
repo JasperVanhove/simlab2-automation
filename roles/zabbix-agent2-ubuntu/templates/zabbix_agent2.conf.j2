@@ -73,7 +73,7 @@ LogFile=/var/log/zabbix/zabbix_agent2.log
 # Default:
 # Server=
 
-Server={{ ansible_server }}
+Server={{ zabbix_server }}
 
 ### Option: ListenPort
 #	Agent will listen on this port for connections from the server.
@@ -124,7 +124,7 @@ ListenIP=0.0.0.0
 #
 # Mandatory: no
 # Default:
-ServerActive={{ ansible_server }}
+ServerActive={{ zabbix_server }}
 
 #ServerActive=127.0.0.1
 
