@@ -4,6 +4,7 @@
     path: /etc/yum.repos.d/epel.repo
     insertafter: "[epel]"
     line: "excludepkgs=zabbix*"
+  become: yes
 
 - name: Add necessary RPM repositories
   ansible.builtin.yum_repository:
@@ -14,6 +15,7 @@
   loop:
     - "zabbix-agent2"
     - "zabbix-agent2-plugin-*"
+  become: yes
 
 - name: Copy Zabbix Agent2 configuration
   ansible.builtin.template:
@@ -22,6 +24,7 @@
     owner: zabbix-agent
     group: zabbix-agent
     mode: 0644
+  become: yes
 
 
 - name: Start & Enable Zabbix Agent2
@@ -29,6 +32,7 @@
     name: zabbix-agent2
     enabled: yes
     state: started
+  become: yes
 
 - name: Enable Zabbix Agent2 in firewall
   ansible.builtin.firewalld:
@@ -36,3 +40,4 @@
     permanent: yes
     state: enabled
     immediate: yes
+  become: yes
