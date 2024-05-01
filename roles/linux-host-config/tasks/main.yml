@@ -19,6 +19,7 @@
     owner: root
     group: root
     mode: 0644
+  become: yes
 
 - name: Show MOTD as output
   ansible.builtin.shell: cat /etc/motd
