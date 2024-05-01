@@ -13,6 +13,11 @@
   tags: zabbix-agent2
   when: ping_result.rc == 0
 
+- name: Create directory structure
+  ansible.windows.win_file:
+    path: C:\Program Files\Zabbix Agent2\
+    state: directory
+
 - name: Configure Zabbix Agent2
   ansible.windows.win_template:
     src: zabbix_agent2.conf.j2
