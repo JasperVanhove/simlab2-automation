@@ -1,2 +1,7 @@
 ---
-# handlers file for zabbix-agent2-alpine
+# handlers file for zabbix-agent2-almalinux
+- name: Restart Zabbix Agent2
+  systemd:
+    name: zabbix-agent2
+    state: restarted
+  tags: zabbix-agent2

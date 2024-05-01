@@ -4,22 +4,26 @@
     name: zabbix-agent2,zabbix-agent2-plugin-*
     state: present
     update_cache: yes
+  become: yes
 
 - name: Copy Zabbix Agent configuration
   ansible.builtin.template:
     src: templates/zabbix_agent2.conf.j2
     dest: /etc/zabbix/zabbix_agent2.conf
-    owner: zabbix-agent
-    group: zabbix-agent
+    owner: zabbix
+    group: zabbix
     mode: 0644
+  become: yes
 
 - name: Start & Enable Zabbix Agent2
   ansible.builtin.shell:
     cmd: "rc-update add zabbix-agent2 && rc-service zabbix-agent2 start"
+    become: yes
 
 - name: Enable Zabbix Agent2 in firewall
   ansible.builtin.firewalld:
-      service: zabbix-agent2
-      permanent: yes
-      state: enabled
-      immediate: yes
+    service: zabbix-agent2
+    permanent: yes
+    state: enabled
+    immediate: yes
+  become: yes

@@ -4,31 +4,36 @@
     url: "https://repo.zabbix.com/zabbix/6.4/debian/pool/main/z/zabbix-release/zabbix-release_6.4-1+debian12_all.deb"
     dest: /tmp/zabbix-agent2.deb
     mode: 0644
+  become: yes
 
 - name: Add Zabbix Agent2 repository via dpkg
   ansible.builtin.apt:
     deb: /tmp/zabbix-agent2.deb
     state: present
+  become: yes
 
 - name: Install Zabbix Agent2 packages
   ansible.builtin.apt:
     pkg:
       - zabbix-agent2
       - zabbix-agent2-plugin-*
+  become: yes
 
 - name: Copy Zabbix Agent configuration
   ansible.builtin.template:
     src: templates/zabbix_agent2.conf.j2
     dest: /etc/zabbix/zabbix_agent2.conf
-    owner: zabbix-agent
-    group: zabbix-agent
+    owner: zabbix
+    group: zabbix
     mode: 0644
+  become: yes
 
 - name: Start & Enable Zabbix Agent2
   ansible.builtin.service:
       name: zabbix-agent2
       state: started
       enabled: yes
+  become: yes
 
 - name: Enable Zabbix Agent2 in firewall
   ansible.builtin.firewalld:
@@ -36,3 +41,4 @@
       permanent: yes
       state: enabled
       immediate: yes
+  become: yes
