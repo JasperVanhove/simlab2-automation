@@ -35,6 +35,11 @@
   tags: zabbix-agent2
   when: ping_result.rc == 0
 
+- name: Ensure that zabbix-agent2 is present on the global system path
+  ansible.windows.win_path:
+    elements:
+      - 'C:\Program Files\Zabbix Agent 2\'
+
 - name: Start Zabbix Agent2
   ansible.windows.win_service:
     name: zabbix-agent2
