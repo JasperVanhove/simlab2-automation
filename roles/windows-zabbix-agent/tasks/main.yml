@@ -6,22 +6,19 @@
     executable: cmd
   register: ping_result
 
-- name: Stop running of remaining tasks if Zabbix Server is not reachable
-  ansible.builtin.fail:
-    msg: "Zabbix Server is not reachable from this host!"
-  when: ping_result.rc != 0
-
 - name: Install Zabbix Agent2
   chocolatey.chocolatey.win_chocolatey:
     name: zabbix-agent2
     state: present
   tags: zabbix-agent2
+  when: ping_result.rc == 0
 
 - name: Configure Zabbix Agent2
   ansible.windows.win_template:
     src: zabbix_agent2.conf.j2
     dest: C:\Program Files\Zabbix Agent2\zabbix_agent2.conf
   tags: zabbix-agent2
+  when: ping_result.rc == 0
 
 - name: Enable Zabbix Firewall Rule
   community.windows.win_firewall_rule:
@@ -31,6 +28,7 @@
     direction: in
     protocol: TCP
   tags: zabbix-agent2
+  when: ping_result.rc == 0
 
 - name: Start Zabbix Agent2
   ansible.windows.win_service:
@@ -38,3 +36,4 @@
     start_mode: auto
     state: started
   tags: zabbix-agent2
+  when: ping_result.rc == 0
