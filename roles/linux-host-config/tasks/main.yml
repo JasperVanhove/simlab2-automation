@@ -4,11 +4,13 @@
   ansible.builtin.hostname:
     name: "{{ ansible_hostname }}"
   tags: hostname
+  become: yes
 
 - name: Set timezone
   ansible.builtin.timezone:
     name: "{{ timezone }}"
   tags: timezone
+  become: yes
 
 - name: Set MOTD
   ansible.builtin.copy:
