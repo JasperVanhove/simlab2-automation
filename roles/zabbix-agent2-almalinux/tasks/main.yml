@@ -21,8 +21,8 @@
   ansible.builtin.template:
     src: templates/zabbix_agent2.conf.j2
     dest: /etc/zabbix/zabbix_agent2.conf
-    owner: zabbix-agent
-    group: zabbix-agent
+    owner: zabbix
+    group: zabbix
     mode: 0644
   become: yes
 
