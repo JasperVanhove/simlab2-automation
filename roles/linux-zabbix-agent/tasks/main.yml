@@ -17,4 +17,4 @@
 
 - name: Install Zabbix Agent
   ansible.builtin.include_role:
-    name: zabbix-agent2-{{ distro_info.ansible_facts.ansible_distribution | lower }
+    name: zabbix-agent2-{{ distro_info.ansible_facts.ansible_distribution | lower }}
