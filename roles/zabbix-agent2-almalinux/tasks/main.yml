@@ -7,9 +7,10 @@
 
 - name: Add necessary RPM repositories
   ansible.builtin.yum_repository:
-      name: "{{ item }}"
-      baseurl: "{{ zabbix_agent2_repo }}"
-      state: present
+    name: "{{ item }}"
+    description: configure yum for {{ item }}
+    baseurl: "{{ zabbix_agent2_repo }}"
+    state: present
   loop:
     - "zabbix-agent2"
     - "zabbix-agent2-plugin-*"
